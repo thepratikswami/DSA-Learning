@@ -2,7 +2,7 @@
 
 ## What hashing is all about
 
-Hashing is a technique for storing and looking up values quickly using a key-to-index mapping. It is often implemented with hash tables, dictionaries, maps, or sets.
+Hashing is a technique for storing and looking up values quickly using keys. It is often implemented with hash tables, dictionaries, maps, or sets.
 
 ### When to use hashing
 
@@ -22,6 +22,7 @@ Hashing is a technique for storing and looking up values quickly using a key-to-
 - Use a set to track seen items and detect duplicates.
 - Use a hash map for value-to-index lookups.
 - Use a map from transformed key -> list of values for grouping.
+- Use prefix sums with a hash map for subarray count problems.
 
 ## Example problems
 
@@ -51,4 +52,6 @@ return result
 
 ## Notes
 
-Hashing is a great first approach when you need fast membership tests and grouping. Always consider collisions and edge cases, but for algorithm practice, a built-in map/set is usually enough.
+Hashing is a great first approach when you need fast membership tests, counting, grouping, or lookup of earlier states. Always consider edge cases like duplicates, empty input, and whether you should check the map before updating it.
+
+For a quick pre-practice refresher, read `revision.md`.

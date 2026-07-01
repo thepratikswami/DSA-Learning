@@ -56,3 +56,5 @@ return result
 ## Notes
 
 Binary search is not only for arrays; it is also useful for any ordered search space. The most important insight is to make the decision function monotonic and keep the boundary updates consistent.
+
+For a quick pre-practice refresher, read `revision.md`.

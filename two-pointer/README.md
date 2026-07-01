@@ -9,6 +9,7 @@ Two-pointer is a technique that uses two indices moving through a data structure
 - When the array is sorted or can be treated in order.
 - When you need to find pairs or triplets satisfying a condition.
 - When you need to check for palindromes or compare opposite ends.
+- When you need fast/slow pointer traversal in a linked list or repeated-state problem.
 
 ## Pattern hacks to identify two-pointer problems
 
@@ -20,8 +21,9 @@ Two-pointer is a technique that uses two indices moving through a data structure
 
 - Use `left` and `right` pointers on a sorted array to find sums.
 - Move one pointer forward or backward based on the current condition.
-- Use one pointer to iterate and the other to search or compare.
+- Use one pointer to read and another to write for in-place array edits.
 - Use opposite ends for palindrome checking or partitioning.
+- Use fast and slow pointers for cycle detection or finding a middle point.
 
 ## Example problems
 
@@ -30,27 +32,36 @@ Two-pointer is a technique that uses two indices moving through a data structure
 3. 3Sum: fix one value and use two-pointer to find remaining pair.
 4. Valid Palindrome: compare characters from both ends toward the center.
 
-## Template that solves >90% of questions
+## Opposite-ends template
 
-Two-pointer problems usually use a small template: initialize pointers, evaluate the current pair, and move one pointer based on the condition.
+Use this for sorted pair problems, palindrome checks, and inward scans.
 
 ```python
 left, right = 0, len(nums) - 1
 result = default_value
+
 while left < right:
     current = evaluate(nums[left], nums[right])
-    if condition(current):
+
+    if current == target:
         result = update_result(result, left, right)
-        left += 1  # or right -= 1 depending on problem
+        left += 1
+        right -= 1
+    elif current < target:
+        left += 1
     else:
-        right -= 1  # or left += 1 based on comparison
+        right -= 1
+
 return result
 ```
 
 - `evaluate(nums[left], nums[right])` computes the current pair state.
-- `condition(current)` is problem-specific: sum, difference, or match.
-- Update the pointer movement rule depending on sorted order or palindrome checks.
+- Move `left` when you need a larger value from a sorted array.
+- Move `right` when you need a smaller value from a sorted array.
+- For palindromes, move both pointers inward when values match.
 
 ## Notes
 
 Two-pointer is powerful when the input order helps reduce complexity from O(n^2) to O(n). It is a strong alternative to nested loops for sorted or sequential data.
+
+For a quick pre-practice refresher, read `revision.md`.

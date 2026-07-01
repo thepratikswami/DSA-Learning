@@ -9,6 +9,7 @@ Sliding window is a technique for solving problems on contiguous subarrays or su
 - When the problem asks for maximum/minimum/average over subarrays or substrings.
 - When the problem involves contiguous elements of an array or string.
 - When you need to find the shortest or longest segment satisfying a condition.
+- When the window state can be updated by adding one element and removing another.
 
 ## Pattern hacks to identify sliding-window problems
 
@@ -30,28 +31,34 @@ Sliding window is a technique for solving problems on contiguous subarrays or su
 3. Sliding Window Maximum: maintain a deque of candidate values for each window.
 4. Find All Anagrams in a String: use a fixed-size window with count matching.
 
-## Template that solves >90% of questions
+## Template that solves most variable-size questions
 
-Most sliding-window problems can be solved with a fixed structure: expand the window, update state, and shrink when needed.
+Most variable-size sliding-window problems follow this structure: expand the window, update state, shrink while needed, then update the answer.
 
 ```python
-start = 0
+left = 0
 state = initialize_state()
 result = default_value
-for end, value in enumerate(nums):
+
+for right, value in enumerate(nums):
     state = add(state, value)
-    while should_shrink(state):
-        result = update_result(result, state, start, end)
-        state = remove(state, nums[start])
-        start += 1
-    result = update_result(result, state, start, end)
+
+    while window_is_invalid(state):
+        state = remove(state, nums[left])
+        left += 1
+
+    result = update_result(result, state, left, right)
+
 return result
 ```
 
 - `add(state, value)` updates the window state as it expands.
-- `should_shrink(state)` decides when the current window is too large or invalid.
-- `remove(state, nums[start])` removes the leftmost value as the window shrinks.
+- `window_is_invalid(state)` decides when the current window must shrink.
+- `remove(state, nums[left])` removes the leftmost value as the window shrinks.
+- For minimum-size windows, update the result inside a `while window_is_valid(...)` loop before shrinking.
 
 ## Notes
 
 Sliding window often reduces brute-force O(n^2) checks to O(n). The key is to keep the state updated incrementally and avoid recomputing the full window each time.
+
+For a quick pre-practice refresher, read `revision.md`.
