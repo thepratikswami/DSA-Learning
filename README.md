@@ -1,42 +1,48 @@
 # DSA Learning
 
-This learning repository focuses on core algorithmic patterns used in problem solving:
+This repository is organized around core DSA patterns and contains solved
+LeetCode-style Python problems for each pattern.
 
-- `hashing`
-- `two-pointer`
-- `sliding-window`
 - `binary-search`
+- `sliding-window`
+- `two-pointers`
+- `hashing`
+- `prefix-sum`
+- `stack`
+- `heap`
+- `linked-list`
+- `trees`
+- `graphs`
+- `backtracking`
+- `dynamic-programming`
+- `greedy`
+- `intervals`
+- `bit-manipulation`
+- `trie`
 
-Each folder contains:
+Each topic folder contains:
 
 - `README.md`: a beginner-friendly overview of the pattern.
 - `revision.md`: a quick interview revision sheet to read before solving problems.
-- `problem_01.py` to `problem_10.py`: generic LeetCode-style starter templates.
+- Named problem files with `Solution` implementations.
+- A small debug runner block in most problem files for quick local execution.
 
-## How to use this repository
+## How To Use
 
 1. Start with the `README.md` in each subfolder.
 2. Read the pattern identification tips.
-3. Read `revision.md` before starting LeetCode problems.
-4. Walk through the example problems and solutions.
-5. Practice by applying the technique to new problems.
+3. Review `revision.md` before solving problems in that folder.
+4. Open a problem file and study the matching pattern implementation.
+5. Run or debug the file locally when a debug block is present.
 
-## Python problem templates
+## Add New Problems
 
-Each pattern folder has 10 starter files. Pick one, replace `defaultMethodName`
-with the LeetCode method name, add your arguments and solution, then run:
-
-```bash
-python3 rename_solutions.py
-```
-
-The script scans every folder, finds `class Solution`, and renames any template
-whose method is no longer `defaultMethodName`. For example, changing the method
-to `findSubString` renames the file to `find_sub_string.py` and updates the
-`main()` call to use `solution.findSubString(...)`.
-
-To preview changes first:
+Create a new starter file whenever you want to solve a problem:
 
 ```bash
-python3 rename_solutions.py --dry-run
+python3 create_solution.py
 ```
+
+`create_solution.py` asks you to choose a topic folder and enter the LeetCode
+method name. It creates a starter file in that folder using the snake_case
+version of the method name.

@@ -1,0 +1,30 @@
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        values = [
+            (1000, "M"),
+            (900, "CM"),
+            (500, "D"),
+            (400, "CD"),
+            (100, "C"),
+            (90, "XC"),
+            (50, "L"),
+            (40, "XL"),
+            (10, "X"),
+            (9, "IX"),
+            (5, "V"),
+            (4, "IV"),
+            (1, "I"),
+        ]
+        ans = []
+
+        for value, symbol in values:
+            count, num = divmod(num, value)
+            ans.append(symbol * count)
+
+        return "".join(ans)
+
+
+# DEBUG RUNNER START
+if __name__ == "__main__":
+    print(Solution().intToRoman(1994))
+# DEBUG RUNNER END
