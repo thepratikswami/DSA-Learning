@@ -8,10 +8,9 @@ from pathlib import Path
 SKIP_DIRS = {".git", ".agents", ".codex", "__pycache__"}
 
 
-def to_snake_case(name: str) -> str:
-    first_pass = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
-    snake = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", first_pass).lower()
-    return re.sub(r"[^a-z0-9_]+", "_", snake).strip("_")
+def to_kebab_case(name: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", name.lower())
+    return slug.strip("-")
 
 
 def topic_folders(root: Path) -> list[Path]:
@@ -53,6 +52,23 @@ def ask_method_name() -> str:
         print("Use a valid Python method name, like twoSum or combinationSum.")
 
 
+def ask_problem_number() -> str:
+    while True:
+        problem_number = input("LeetCode problem number: ").strip()
+        if problem_number.isdigit() and int(problem_number) > 0:
+            return str(int(problem_number))
+        print("Use a positive problem number, like 39.")
+
+
+def ask_problem_title() -> str:
+    while True:
+        problem_title = input("Problem title: ").strip()
+        slug = to_kebab_case(problem_title)
+        if slug:
+            return slug
+        print("Use a problem title, like Combination Sum.")
+
+
 def solution_template(method_name: str) -> str:
     return f"""class Solution:
     def {method_name}(self, *args):
@@ -78,8 +94,10 @@ def main() -> None:
         return
 
     folder = choose_folder(folders)
+    problem_number = ask_problem_number()
+    problem_slug = ask_problem_title()
     method_name = ask_method_name()
-    file_name = f"{to_snake_case(method_name)}.py"
+    file_name = f"{problem_number}-{problem_slug}.py"
     path = folder / file_name
 
     if path.exists():

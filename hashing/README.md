@@ -54,4 +54,4 @@ return result
 
 Hashing is a great first approach when you need fast membership tests, counting, grouping, or lookup of earlier states. Always consider edge cases like duplicates, empty input, and whether you should check the map before updating it.
 
-For a quick pre-practice refresher, read `revision.md`.
+For a quick pre-practice refresher, read `00-revision.md`.

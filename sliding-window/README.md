@@ -61,4 +61,4 @@ return result
 
 Sliding window often reduces brute-force O(n^2) checks to O(n). The key is to keep the state updated incrementally and avoid recomputing the full window each time.
 
-For a quick pre-practice refresher, read `revision.md`.
+For a quick pre-practice refresher, read `00-revision.md`.

@@ -64,4 +64,4 @@ return result
 
 Two-pointer is powerful when the input order helps reduce complexity from O(n^2) to O(n). It is a strong alternative to nested loops for sorted or sequential data.
 
-For a quick pre-practice refresher, read `revision.md`.
+For a quick pre-practice refresher, read `00-revision.md`.
