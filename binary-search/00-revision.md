@@ -167,3 +167,23 @@ End with:
 - When condition is true, do I move left or right?
 - What should I return if the target does not exist?
 - Does the solution work for one element?
+
+## Worked example
+
+Binary search on answer: Koko Eating Bananas, `piles = [3, 6, 7, 11]`, `h = 8`.
+
+Search the eating speed in `[1, max(piles)] = [1, 11]`. `can(speed)` sums
+`ceil(pile / speed)` hours and checks `<= 8`.
+
+- `lo = 1`, `hi = 11`, `mid = 6`. Hours = `1 + 1 + 2 + 2 = 6 <= 8`. Feasible, so
+  keep the smaller half: `hi = 6`.
+- `lo = 1`, `hi = 6`, `mid = 3`. Hours = `1 + 2 + 3 + 4 = 10 > 8`. Not feasible, so
+  raise the floor: `lo = 4`.
+- `lo = 4`, `hi = 6`, `mid = 5`. Hours = `1 + 2 + 2 + 3 = 8 <= 8`. Feasible, so
+  `hi = 5`.
+- `lo = 4`, `hi = 5`, `mid = 4`. Hours = `1 + 2 + 2 + 3 = 8 <= 8`. Feasible, so
+  `hi = 4`.
+- `lo == hi == 4`, loop ends. Answer is `4`.
+
+Notice how `can(mid)` is monotonic (once a speed works, every faster speed works),
+so each step safely discards half of the speed range.

@@ -29,3 +29,20 @@ Manipulate node references carefully. Save the next node before changing links.
 ## Complexity
 
 Most linked-list pointer solutions are `O(n)` time and `O(1)` extra space.
+
+## Worked example
+
+Fast/slow pointers finding the middle of `1 -> 2 -> 3 -> 4 -> 5`. `slow` moves one
+step, `fast` moves two; when `fast` runs off the end, `slow` sits on the middle.
+
+```
+start:  slow=1   fast=1
+step 1: slow=2   fast=3          (fast, fast.next exist -> continue)
+step 2: slow=3   fast=5          (fast=5, fast.next=None -> stop)
+```
+
+`slow` stops at node `3`, the middle of the 5-node list. For an even list
+`1 -> 2 -> 3 -> 4`, the same loop stops with `slow` at node `3` (the second
+middle) because the `while fast and fast.next` guard prevents dereferencing past
+the tail. This middle-finding trace is the shared core of cycle detection, reorder,
+and palindrome checks.

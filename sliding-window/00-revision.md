@@ -194,3 +194,20 @@ End with:
 - Should I shrink with `while` or only once?
 - When exactly should I update the answer?
 - Does the logic still work for empty input and one element?
+
+## Worked example
+
+Variable-size window for the longest substring without repeating characters.
+Input: `s = "abcabcbb"`. Keep a `seen` set and `left = 0`.
+
+1. `right = 0..2` add `a, b, c` -> window `"abc"`, best length `3`.
+2. `right = 3` value `a` already in `seen`. Shrink: remove `s[left]='a'`, `left = 1`.
+   Now `a` is free; add it. Window `"bca"`, length still `3`.
+3. `right = 4` value `b` repeats. Remove `s[1]='b'`, `left = 2`, add `b`.
+   Window `"cab"`, length `3`.
+4. `right = 5` value `c` repeats. Remove `s[2]='c'`, `left = 3`, add `c`.
+   Window `"abc"`, length `3`.
+5. `right = 6,7` value `b` then `b` force shrinking down to `"b"`.
+
+Each character is added once and removed at most once, so the pass is `O(n)` and
+the answer is `3`.

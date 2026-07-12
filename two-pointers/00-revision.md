@@ -210,3 +210,17 @@ End with:
 - What exact condition moves `right`?
 - Can duplicates affect the answer?
 - Does the loop stop correctly for arrays of length `0`, `1`, and `2`?
+
+## Worked example
+
+Opposite-ends template on a sorted array. Input: `numbers = [2, 7, 11, 15]`,
+`target = 9`.
+
+1. Start `left = 0` (value `2`), `right = 3` (value `15`).
+2. Sum `= 2 + 15 = 17 > 9`. The largest value is too big, so move `right` left to
+   `2` (value `11`).
+3. Sum `= 2 + 11 = 13 > 9`. Still too big, move `right` left to `1` (value `7`).
+4. Sum `= 2 + 7 = 9 == target`. Answer found: indices `[1, 2]` (1-based).
+
+The pointers only ever moved toward each other, each step discarding a value that
+could not possibly be part of the answer, so the scan is `O(n)`.

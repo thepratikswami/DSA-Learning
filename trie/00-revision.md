@@ -29,3 +29,27 @@ Store strings by prefix so search and prefix checks walk one character at a time
 ## Complexity
 
 Insert and exact search are `O(L)` for word length `L`. Space is proportional to the total characters stored.
+
+## Worked example
+
+Insert `"app"` and `"apple"`, then run a few queries.
+
+```
+insert("app"):     root -> a -> p -> p(is_word=True)
+insert("apple"):   reuse a -> p -> p, then -> l -> e(is_word=True)
+```
+
+Resulting trie (shared prefix `app`):
+
+```
+root -> a -> p -> p(*) -> l -> e(*)
+                  (*) marks is_word=True
+```
+
+1. `search("app")`: walk `a -> p -> p`, node exists and `is_word=True` -> `True`.
+2. `search("ap")`:  walk `a -> p`, node exists but `is_word=False` -> `False`.
+3. `startsWith("appl")`: walk `a -> p -> p -> l`, node exists -> `True`.
+4. `search("apples")`: after `...e`, next char `s` not in children -> `False`.
+
+The key move: `"app"` and `"apple"` share the same three nodes, and only the
+`is_word` flag distinguishes a stored word from a passing-through prefix.

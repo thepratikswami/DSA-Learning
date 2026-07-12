@@ -29,3 +29,18 @@ Use a heap when you repeatedly need the smallest, largest, or highest-priority i
 ## Complexity
 
 Typical top-K solutions are `O(n log k)` time and `O(k)` space.
+
+## Worked example
+
+Kth largest with `nums = [3, 2, 1, 5, 6, 4]`, `k = 2`, using a bounded min-heap
+of size `k`. Python `heapq` is a min-heap, so the root is the smallest kept value.
+
+1. Push `3`. Heap `[3]`.
+2. Push `2`. Heap `[2, 3]`. Size is `2`, not over `k`.
+3. Push `1`. Heap `[1, 3, 2]`. Size `3 > 2`, pop min `1`. Heap `[2, 3]`.
+4. Push `5`. Heap `[2, 3, 5]`. Size `3 > 2`, pop min `2`. Heap `[3, 5]`.
+5. Push `6`. Heap `[3, 5, 6]`. Size `3 > 2`, pop min `3`. Heap `[5, 6]`.
+6. Push `4`. Heap `[4, 6, 5]`. Size `3 > 2`, pop min `4`. Heap `[5, 6]`.
+
+The heap holds the two largest values `{5, 6}`; its root `5` is the 2nd largest.
+Each push/pop is `O(log k)`, so total work is `O(n log k)`.

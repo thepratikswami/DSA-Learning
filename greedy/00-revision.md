@@ -29,3 +29,17 @@ Make a locally optimal choice that can be proven safe for the whole problem.
 ## Complexity
 
 Usually `O(n)` if no sorting is needed, or `O(n log n)` when sorting is required.
+
+## Worked example
+
+Non-overlapping Intervals on `[[1,2], [2,3], [3,4], [1,3]]`, greedy by earliest
+end time (invariant: `end` = finish of the last interval we kept):
+
+1. Sort by end -> `[[1,2], [2,3], [1,3], [3,4]]`. Start `end = -inf`, `removed = 0`.
+2. `[1,2]`: `1 >= -inf` -> keep, `end = 2`.
+3. `[2,3]`: `2 >= 2` -> keep, `end = 3`.
+4. `[1,3]`: `1 < 3` -> overlaps, `removed = 1` (drop it, `end` unchanged).
+5. `[3,4]`: `3 >= 3` -> keep, `end = 4`.
+
+Answer `removed = 1`. The greedy choice (always keep the interval that finishes
+earliest) leaves maximum room for the rest, so no other removal set is smaller.

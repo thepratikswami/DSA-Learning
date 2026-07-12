@@ -29,3 +29,26 @@ Break the problem into a question about one node plus the same question for its 
 ## Complexity
 
 Most tree traversals are `O(n)` time. Space is `O(h)` for recursion, or `O(w)` for BFS queue width.
+
+## Worked example
+
+Compute `maxDepth` on this tree with a post-order DFS (visit children, then combine):
+
+```
+        3
+       / \
+      9   20
+         /  \
+        15   7
+```
+
+1. `dfs(3)` needs `dfs(9)` and `dfs(20)`.
+2. `dfs(9)`: no children -> `1 + max(dfs(None)=0, dfs(None)=0)` = `1`.
+3. `dfs(20)` needs `dfs(15)` and `dfs(7)`.
+4. `dfs(15)`: leaf -> `1`.
+5. `dfs(7)`: leaf -> `1`.
+6. Back in `dfs(20)`: `1 + max(1, 1)` = `2`.
+7. Back in `dfs(3)`: `1 + max(dfs(9)=1, dfs(20)=2)` = `3`.
+
+The answer `3` bubbles up because each node returns one number summarizing its
+whole subtree, exactly the "solve one node, combine children" template.
